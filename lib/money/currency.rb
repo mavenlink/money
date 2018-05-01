@@ -92,7 +92,7 @@ class Money
       :isk => {:priority => 100, :iso_code => "ISK", :name => "Icelandic Króna", :symbol => "kr", :subunit => nil, :subunit_to_unit => 1, :separator => ",", :delimiter => "."},
       :jmd => {:priority => 100, :iso_code => "JMD", :name => "Jamaican Dollar", :symbol => "JMD$", :subunit => "Cent", :subunit_to_unit => 100, :separator => ".", :delimiter => ","},
       :jod => {:priority => 100, :iso_code => "JOD", :name => "Jordanian Dinar", :symbol => "د.ا", :subunit => "Fils", :subunit_to_unit => 1000, :separator => ".", :delimiter => ","},
-      :jpy => {:priority => 6, :iso_code => "JPY", :name => "Japanese Yen", :symbol => "¥", :subunit => nil, :subunit_to_unit => 1, :separator => ".", :delimiter => ","},
+      :jpy => {:priority => 6, :iso_code => "JPY", :name => "Japanese Yen", :symbol => "¥", :subunit => nil, :subunit_to_unit => 100, :separator => ".", :delimiter => ","},
       :kes => {:priority => 100, :iso_code => "KES", :name => "Kenyan Shilling", :symbol => "KSh", :subunit => "Cent", :subunit_to_unit => 100, :separator => ".", :delimiter => ","},
       :kgs => {:priority => 100, :iso_code => "KGS", :name => "Kyrgyzstani Som", :symbol => "som", :subunit => "Tyiyn", :subunit_to_unit => 100, :separator => ".", :delimiter => ","},
       :khr => {:priority => 100, :iso_code => "KHR", :name => "Cambodian Riel", :symbol => "៛", :subunit => "Sen", :subunit_to_unit => 100, :separator => ".", :delimiter => ","},
