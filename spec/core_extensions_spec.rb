@@ -13,7 +13,7 @@ describe "Money core extensions" do
         money.cents.should == 100_37
         money.currency.should == Money.default_currency
 
-        money = BigDecimal.new('1234').to_money
+        money = BigDecimal('1234').to_money
         money.cents.should == 1234_00
         money.currency.should == Money.default_currency
       end

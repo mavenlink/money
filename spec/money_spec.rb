@@ -796,7 +796,7 @@ describe Money do
     it "should not loose precision" do
       Money.new_with_dollars(1234).cents.should == 1234_00
       Money.new_with_dollars(100.37).cents.should == 100_37
-      Money.new_with_dollars(BigDecimal.new('1234')).cents.should == 1234_00
+      Money.new_with_dollars(BigDecimal('1234')).cents.should == 1234_00
     end
 
     it "accepts a currency options" do
@@ -900,25 +900,25 @@ describe Money do
 
   describe "Money.from_bigdecimal" do
     it "converts given amount to cents" do
-      Money.from_bigdecimal(BigDecimal.new("1")).should == Money.new(1_00)
-      Money.from_bigdecimal(BigDecimal.new("1")).should == Money.new(1_00, "USD")
-      Money.from_bigdecimal(BigDecimal.new("1"), "EUR").should == Money.new(1_00, "EUR")
+      Money.from_bigdecimal(BigDecimal("1")).should == Money.new(1_00)
+      Money.from_bigdecimal(BigDecimal("1")).should == Money.new(1_00, "USD")
+      Money.from_bigdecimal(BigDecimal("1"), "EUR").should == Money.new(1_00, "EUR")
     end
 
     it "should respect :subunit_to_unit currency property" do
-      Money.from_bigdecimal(BigDecimal.new("1"), "USD").should == Money.new(1_00,  "USD")
-      Money.from_bigdecimal(BigDecimal.new("1"), "TND").should == Money.new(1_000, "TND")
-      Money.from_bigdecimal(BigDecimal.new("1"), "CLP").should == Money.new(1,     "CLP")
+      Money.from_bigdecimal(BigDecimal("1"), "USD").should == Money.new(1_00,  "USD")
+      Money.from_bigdecimal(BigDecimal("1"), "TND").should == Money.new(1_000, "TND")
+      Money.from_bigdecimal(BigDecimal("1"), "CLP").should == Money.new(1,     "CLP")
     end
 
     it "accepts a currency options" do
-      m = Money.from_bigdecimal(BigDecimal.new("1"))
+      m = Money.from_bigdecimal(BigDecimal("1"))
       m.currency.should == Money.default_currency
 
-      m = Money.from_bigdecimal(BigDecimal.new("1"), Money::Currency.wrap("EUR"))
+      m = Money.from_bigdecimal(BigDecimal("1"), Money::Currency.wrap("EUR"))
       m.currency.should == Money::Currency.wrap("EUR")
 
-      m = Money.from_bigdecimal(BigDecimal.new("1"), "EUR")
+      m = Money.from_bigdecimal(BigDecimal("1"), "EUR")
       m.currency.should == Money::Currency.wrap("EUR")
     end
   end
@@ -927,7 +927,7 @@ describe Money do
     it "converts given amount to cents" do
       Money.from_numeric(1).should == Money.new(1_00)
       Money.from_numeric(1.0).should == Money.new(1_00)
-      Money.from_numeric(BigDecimal.new("1")).should == Money.new(1_00)
+      Money.from_numeric(BigDecimal("1")).should == Money.new(1_00)
     end
 
     it "should raise ArgumentError with unsupported argument" do
@@ -937,7 +937,7 @@ describe Money do
     it "should optimize workload" do
       Money.should_receive(:from_fixnum).with(1, "USD").and_return(Money.new(1_00,  "USD"))
       Money.from_numeric(1, "USD").should == Money.new(1_00,  "USD")
-      Money.should_receive(:from_bigdecimal).with(BigDecimal.new("1.0"), "USD").and_return(Money.new(1_00,  "USD"))
+      Money.should_receive(:from_bigdecimal).with(BigDecimal("1.0"), "USD").and_return(Money.new(1_00,  "USD"))
       Money.from_numeric(1.0, "USD").should == Money.new(1_00,  "USD")
     end
 

@@ -212,7 +212,7 @@ class Money
   # @see Money.parse
   #
   def self.from_string(value, currency = Money.default_currency)
-    from_bigdecimal(BigDecimal.new(value.to_s), currency)
+    from_bigdecimal(BigDecimal(value.to_s), currency)
   end
 
   # Converts a Fixnum into a Money object treating the +value+
@@ -271,7 +271,7 @@ class Money
   # @see Money.from_numeric
   #
   def self.from_float(value, currency = Money.default_currency)
-    from_bigdecimal(BigDecimal.new(value.to_s), currency)
+    from_bigdecimal(BigDecimal(value.to_s), currency)
   end
 
   # Converts a BigDecimal into a Money object treating the +value+
@@ -285,13 +285,13 @@ class Money
   # @return [Money]
   #
   # @example
-  #   Money.from_bigdecimal(BigDecimal.new("100")
+  #   Money.from_bigdecimal(BigDecimal("100")
   #   #=> #<Money @cents=10000 @currency="USD">
-  #   Money.from_bigdecimal(BigDecimal.new("100", "USD")
+  #   Money.from_bigdecimal(BigDecimal("100", "USD")
   #   #=> #<Money @cents=10000 @currency="USD">
-  #   Money.from_bigdecimal(BigDecimal.new("100", "EUR")
+  #   Money.from_bigdecimal(BigDecimal("100", "EUR")
   #   #=> #<Money @cents=10000 @currency="EUR">
-  #   Money.from_bigdecimal(BigDecimal.new("100", "BHD")
+  #   Money.from_bigdecimal(BigDecimal("100", "BHD")
   #   #=> #<Money @cents=100 @currency="BHD">
   #
   # @see BigDecimal#to_money
@@ -341,7 +341,7 @@ class Money
       when Fixnum
         from_fixnum(value, currency)
       when Numeric
-        from_bigdecimal(BigDecimal.new(value.to_s), currency)
+        from_bigdecimal(BigDecimal(value.to_s), currency)
       else
         raise ArgumentError, "`value' should be a Numeric object"
     end
@@ -594,7 +594,7 @@ class Money
   def /(value)
     if value.is_a?(Money)
       if currency == value.currency
-        (cents / BigDecimal.new(value.cents.to_s)).to_f
+        (cents / BigDecimal(value.cents.to_s)).to_f
       else
         (cents / BigDecimal(value.exchange_to(currency).cents.to_s)).to_f
       end
@@ -914,7 +914,7 @@ class Money
   # @example
   #   Money.us_dollar(100).to_f => 1.0
   def to_f
-    (BigDecimal.new(cents.to_s) / currency.subunit_to_unit).to_f
+    (BigDecimal(cents.to_s) / currency.subunit_to_unit).to_f
   end
 
   # Receive the amount of this money object in another Currency.

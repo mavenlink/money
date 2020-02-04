@@ -81,9 +81,9 @@ class Money
         end
         _to_currency_  = Currency.wrap(to_currency)
 
-        cents = from.cents / (BigDecimal.new(from.currency.subunit_to_unit.to_s) / BigDecimal.new(_to_currency_.subunit_to_unit.to_s))
+        cents = from.cents / (BigDecimal(from.currency.subunit_to_unit.to_s) / BigDecimal(_to_currency_.subunit_to_unit.to_s))
 
-        ex = cents * BigDecimal.new(rate.to_s)
+        ex = cents * BigDecimal(rate.to_s)
         ex = ex.to_f
         ex = if block_given?
                block.call(ex)

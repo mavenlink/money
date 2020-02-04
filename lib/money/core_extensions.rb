@@ -11,7 +11,7 @@ class Numeric
   # @example
   #   100.to_money                   #=> #<Money @cents=10000>
   #   100.37.to_money                #=> #<Money @cents=10037>
-  #   BigDecimal.new('100').to_money #=> #<Money @cents=10000>
+  #   BigDecimal('100').to_money #=> #<Money @cents=10000>
   #
   # @see Money.from_numeric
   #
