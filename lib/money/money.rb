@@ -338,7 +338,7 @@ class Money
   #
   def self.from_numeric(value, currency = Money.default_currency)
     case value
-      when Fixnum
+      when Integer
         from_fixnum(value, currency)
       when Numeric
         from_bigdecimal(BigDecimal(value.to_s), currency)
